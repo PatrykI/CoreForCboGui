@@ -1,0 +1,25 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "2.6"
+metadata:
+  name: coreforcbogui
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          destination: DS4
+          url: http://vhaafds4ci.sap.aafintl.com:8000
+        app:
+          name: ZZ1_CORECBOGUI
+          description: ""
+          package: $TMP
+          transport: DS4K904634
+        exclude:
+          - /test/
